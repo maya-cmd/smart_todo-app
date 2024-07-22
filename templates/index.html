@@ -15,7 +15,7 @@
             	<label>Task to do</label>
             	<input type="text" name="goal" placeholder="Enter errand...">
             	<br>
-            	<button type="submit">Add errand</button>
+            	<button type="submit">Add Task</button>
         	</div>
     </form>
 	</div>
@@ -30,7 +30,7 @@
     	<span>Accomplished</span>
     	{% endif %}
 		<div>
-			<a href="/update/{{ errand.id }}">Close</a>
+			<a href="/update/{{ errand.id }}">Achieved/a>
 			<a href="/delete/{{ errand.id }}">Delete</a>
 		</div>
 	</div>
