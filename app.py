@@ -1,10 +1,15 @@
-from flask import Flask, request, render_template, redirect, url_for
+import os
+import mysql.connector
+from urllib.parse import urlparse
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import create_db
 
 
 # initialize app
 app = Flask(__name__)
+
+
 
 # Direct SQLALCHEMY to connect to mysql database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/Tasks_app'
