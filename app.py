@@ -9,10 +9,10 @@ import create_db
 # initialize app
 app = Flask(__name__)
 
-
+url = urlparse(os.getenv('CLEARDB_DATABASE_URL'))
 
 # Direct SQLALCHEMY to connect to mysql database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/Tasks_app'
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{url.username}:{url.password}@{url.hostname}/{url.path[1:]}"
 # Disable modification tracking for SQLALCHEMY 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize SQLALCHEMY with flask app 
