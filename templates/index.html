@@ -5,36 +5,76 @@
 	<meta name="viewport" content= "width=device-width, initial-scale=1.0">
 	<title>Smart todo List</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+	<script>
+		function navigate(pageName) {
+			const pages = document.querySelectorAll("section.page");
+			for (let i =0; i< pages.length; ++i){
+				pages[i].style.visibility = "none"
+			}
+			
+			document.querySelector(`section.page.${pageName}`).style.display = "block";
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+            navigate('home'); // Show the home page by default
+        });
+	</script>
+	<style>
+        section.page {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-	<div class="box-1">
+	<section class="header"
 		<h1>TaskZen</h1>
-
-		<form action="/add" method="post">
-        	<div class="center">
-            	<label>Task to do</label>
-            	<input type="text" name="goal" placeholder="Enter errand...">
-            	<br>
-            	<button type="submit">Add Task</button>
-        	</div>
-    </form>
-	</div>
-    <hr>
-
-	{% for errand in errand_list %}
-	<div class="errand">
-		<p>{{errand.id }} | {{ errand.goal }}</p>
-		{% if errand.done == False %}
-    	<span>Not accomplished</span>
-    	{% else %}
-    	<span>Accomplished</span>
-    	{% endif %}
 		<div>
-			<a href="/update/{{ errand.id }}">Achieved</a>
-			<a href="/delete/{{ errand.id }}">Delete</a>
+			<button onclick="navigate('home')">Home</button>
+			<button onclick="navigate('my-list')">My List</button>
+			<button onclick="navigate('about')">About</button>
 		</div>
-	</div>
-    {% endfor %}
+	</section>
+
+	<section class="page home">
+		<span>Home</span>
+	</section>
+
+	<section class="page my-list">
+		<div class="box-1">
+
+			<form action="/add" method="post">
+				<div class="center">
+					<label>Task to do</label>
+					<input type="text" name="goal" placeholder="Enter errand...">
+					<br>
+					<button type="submit">Add Task</button>
+				</div>
+		</form>
+		</div>
+		<hr>
+
+		{% for errand in errand_list %}
+		<div class="errand">
+			<p>{{errand.id }} | {{ errand.goal }}</p>
+			{% if errand.done == False %}
+			<span>Not accomplished</span>
+			{% else %}
+			<span>Accomplished</span>
+			{% endif %}
+			<div>
+				<a href="/update/{{ errand.id }}">Achieved</a>
+				<a href="/delete/{{ errand.id }}">Delete</a>
+			</div>
+		</div>
+		{% endfor %}
+	</section>
+
+	<section class="page about">
+		<span>About</span>
+	</section>
+	<section class="page landing">
+        <iframe src="https://qkpage2.co/p/https_taskzen-9a9d734709e7_herokuapp_com_" style="width: 100%; height: 100vh; border: none;"></iframe>
+    </section>
 </body>
 
 
