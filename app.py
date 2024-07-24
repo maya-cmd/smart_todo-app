@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 # Direct SQLALCHEMY to connect to mysql database
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://udqi98m32rlrsu:p29a0bd6001acc4289228239ac3db0c9bfb6ac0ef4e14b65825736bfed0491cb6@c9mq4861d16jlm.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/de71as31226ps3'
 # Disable modification tracking for SQLALCHEMY 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize SQLALCHEMY with flask app 
