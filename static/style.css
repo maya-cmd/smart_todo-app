@@ -130,9 +130,6 @@ input {
     padding: 8px 16px;
     font-size: 16px;
 }
-.page {
-    display: none;
-}
 
 .page.landing iframe {
     width: 100%;
