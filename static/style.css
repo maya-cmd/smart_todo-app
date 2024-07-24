@@ -108,11 +108,14 @@ body{
 }
 
 section.page {
-    visibility: hidden;
+    display: none;
 }
 
-section.page.home {
-    visibility: visible;
+section.page.landing {
+    display: block;
+    background-color: pink;
+    height: 100%;
+    width: 100%;
 }
 
 h1{
