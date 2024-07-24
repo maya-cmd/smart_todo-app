@@ -9,10 +9,10 @@
 		function navigate(pageName) {
 			const pages = document.querySelectorAll("section.page");
 			for (let i =0; i< pages.length; ++i){
-				pages[i].style.display = "none"
+				pages[i].style.visibility = "hidden"
 			}
 			
-			document.querySelector(`section.page.${pageName}`).style.display = "block";
+			document.querySelector(`section.page.${pageName}`).style.visibility = "visible";
 		}
 
 		document.addEventListener("DOMContentLoaded", function() {
