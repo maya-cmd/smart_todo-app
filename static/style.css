@@ -3,11 +3,6 @@ body{
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-
 }
 
 .header {
@@ -32,19 +27,6 @@ button {
     font-size: 16px;
 }
 
-.page {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
-
-.page span {
-    font-size: 24px;
-    font-weight: bold;
-}
 
 .box-1 {
     margin-bottom: 20px;
@@ -110,14 +92,27 @@ button {
 
 section.page {
     display: none;
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
+.page span {
+    font-size: 24px;
+    font-weight: bold;
+}
 section.page.landing {
     display: block;
     background-color: pink;
-    height: 100%;
+    height: 90vh;
     width: 100%;
+    max-width: 100vw;
+    margin: 0;
     background-image:url(https://t4.ftcdn.net/jpg/02/89/04/39/360_F_289043915_62E4CSfMrMJeW3JFYnaYUcXZLmgV6iK3.jpg);
+    background-size: cover;
 }
 
 h1{
