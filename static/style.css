@@ -32,7 +32,6 @@ body{
 }
 
 .page {
-    display: none;
     width: 80%;
     max-width: 800px;
     margin: 20px auto;
