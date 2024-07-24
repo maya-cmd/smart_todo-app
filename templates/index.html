@@ -9,19 +9,22 @@
 		function navigate(pageName) {
 			const pages = document.querySelectorAll("section.page");
 			for (let i =0; i< pages.length; ++i){
-				pages[i].style.visibility = "none"
+				pages[i].style.display = "none"
 			}
 			
 			document.querySelector(`section.page.${pageName}`).style.display = "block";
 		}
 
 		document.addEventListener("DOMContentLoaded", function() {
-            navigate('home'); // Show the home page by default
+            navigate('landing'); // Show the home page by default
         });
 	</script>
 	<style>
         section.page {
             display: none;
+        }
+		section.page.landing {
+            display: block; /* Show home page initially */
         }
     </style>
 </head>
@@ -29,14 +32,14 @@
 	<section class="header"
 		<h1>TaskZen</h1>
 		<div>
-			<button onclick="navigate('home')">Home</button>
+			<button onclick="navigate('landing')">Home</button>
 			<button onclick="navigate('my-list')">My List</button>
 			<button onclick="navigate('about')">About</button>
 		</div>
 	</section>
 
-	<section class="page home">
-		<span>Home</span>
+	<section class="page landing">
+		<iframe src="https://qkpage2.co/p/https_taskzen-9a9d734709e7_herokuapp_com_" style="width: 100%; height: 100vh; border: none;"></iframe>
 	</section>
 
 	<section class="page my-list">
@@ -72,9 +75,7 @@
 	<section class="page about">
 		<span>About</span>
 	</section>
-	<section class="page landing">
-        <iframe src="https://qkpage2.co/p/https_taskzen-9a9d734709e7_herokuapp_com_" style="width: 100%; height: 100vh; border: none;"></iframe>
-    </section>
+	
 </body>
 
 
