@@ -9,15 +9,11 @@
 		function navigate(pageName) {
 			const pages = document.querySelectorAll("section.page");
 			for (let i =0; i< pages.length; ++i){
-				pages[i].style.visibility = "hidden"
+				pages[i].style.display = "none"
 			}
 			
-			document.querySelector(`section.page.${pageName}`).style.visibility = "visible";
+			document.querySelector(`section.page.${pageName}`).style.display = "block";
 		}
-
-		document.addEventListener("DOMContentLoaded", function() {
-            navigate('landing'); // Show the home page by default
-        });
 	</script>
 	<style>
 		section.page.landing {
