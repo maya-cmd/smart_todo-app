@@ -3,18 +3,23 @@ import mysql.connector
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import create_db
+from urllib.parse import urlparse
 
 
 # initialize app
 app = Flask(__name__)
 
+db_url = os.environ.get('DATABASE_URL')
+url = urlparse(db_url)
+
 
 # Direct SQLALCHEMY to connect to mysql database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://udqi98m32rlrsu:p29a0bd6001acc4289228239ac3db0c9bfb6ac0ef4e14b65825736bfed0491cb6@c9mq4861d16jlm.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/de71as31226ps3'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql+psycopg2://{url.username}:{url.password}@{url.hostname}:{url.port}/{url.path[1:]}'
 # Disable modification tracking for SQLALCHEMY 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize SQLALCHEMY with flask app 
 db = SQLAlchemy(app)
+
 
 
 class Tasks(db.Model):
