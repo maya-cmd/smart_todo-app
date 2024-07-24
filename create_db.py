@@ -1,21 +1,32 @@
-import mysql.connector
-import MySQLdb
-import pymysql
-from flask import Flask, request, render_template, redirect, url_for, jsonify
-from urllib.parse import urlparse
 import os
-url = urlparse(os.getenv('CLEARDB_DATABASE_URL'))
-mydb = mysql.connector.connect(
-       user=url.username,
-       password=url.password,
-       host=url.hostname,
-       port=url.port,
-       database=url.path[1:]
-)
+from sqlalchemy import create_engine, Column, Integer, String, Boolean
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-my_cursor = mydb.cursor()
+# Get the database URL from environment variable
+DATABASE_URL = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 
-my_cursor.execute("CREATE DATABASE IF NOT EXISTS Tasks_app")
+# Create the engine
+engine = create_engine(DATABASE_URL)
 
-my_cursor.close()
-mydb.close()
+# Create a configured "Session" class
+Session = sessionmaker(bind=engine)
+
+# Create a Session
+session = Session()
+
+# Create a base class for our classes definitions
+Base = declarative_base()
+
+# Define the Tasks model
+class Tasks(Base):
+    __tablename__ = 'tasks'
+    id = Column(Integer, primary_key=True)
+    goal = Column(String(100))
+    done = Column(Boolean, default=False)
+
+# Create the database tables
+Base.metadata.create_all(engine)
+
+# Close the session
+session.close()

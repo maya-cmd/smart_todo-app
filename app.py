@@ -1,6 +1,5 @@
 import os
 import mysql.connector
-from urllib.parse import urlparse
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import create_db
@@ -9,10 +8,9 @@ import create_db
 # initialize app
 app = Flask(__name__)
 
-url = urlparse(os.getenv('CLEARDB_DATABASE_URL'))
 
 # Direct SQLALCHEMY to connect to mysql database
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{url.username}:{url.password}@{url.hostname}/{url.path[1:]}"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 # Disable modification tracking for SQLALCHEMY 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize SQLALCHEMY with flask app 
@@ -58,6 +56,5 @@ def delete(errand_id):
 
 if __name__ == "__main__":
     with app.app_context():
-        db.drop_all()
         db.create_all()
     app.run(debug=True)
